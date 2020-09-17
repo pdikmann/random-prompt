@@ -1,14 +1,36 @@
 var content = document.getElementById("content")
-var button = document.getElementById("button")
+var randomize = document.getElementById("randomize")
+var set = [1, 0, 4, 4, 4, 2, 3]
+var lengths = (() => {
+  let len = []
+  for (i in fields) {
+    len[i] = fields[i].data.length
+  }
+  return len
+})() // unnecessary, not an optimization
 
-button.addEventListener("click", Random)
+randomize.addEventListener("click", Random)
 
 function Random() {
   Clear()
-  for (f of fields) {
-    WriteLine(f.label + ": " + f.data[Math.floor(Math.random() * f.data.length)]) 
+  for (i of set) {
+    WriteButton(i)
   }
 }
+
+function WriteButton(i) {
+  let f = fields[i]
+  let b = document.createElement("button")
+  b.addEventListener("click",() => RandomizeButton(b, f))
+  RandomizeButton(b, f)
+  content.appendChild(b)
+}
+
+function RandomizeButton(b, f) {
+  b.textContent = f.data[Math.floor(Math.random() * f.data.length)]
+}
+
+  
 
 function WriteLine(str) {
   content.innerHTML = content.innerHTML + str + "<br>"

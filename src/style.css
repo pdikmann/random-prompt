@@ -1,0 +1,43 @@
+* {
+    margin: 0px;
+    padding: 0px;
+}
+
+html, body {
+    /* overflow: hidden; */
+}
+
+body {
+    position: relative;
+    font-size: 5vmin;
+}
+
+#wrapper {
+    /* background-color: magenta; */
+    margin: 4vw 0 0 0;
+    /* width: 100vw; */
+    /*max-width: 100%;*/
+    /* height: 80vh; */
+    /*max-height: 100%;*/
+    /* padding: 2vmin; */
+}
+
+button {
+    display: block;
+    width: 92vw;
+    margin: 0 0 1vw 4vw;
+    /* margin: 2vmin; */
+    /* height: 20%; */
+    height: 8vh;
+    font-size: inherit;
+    background-color: white;
+    border: 2px solid blue;
+    border-radius: 2vmin;
+}
+
+#randomize {
+    width: 12vh;
+    height: 12vh;
+    border-radius: 8vh;
+    margin: 4vw auto 0 auto;
+}
