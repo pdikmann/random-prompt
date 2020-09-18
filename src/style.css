@@ -35,17 +35,33 @@ button {
     border-radius: 2vmin;
 }
 
-button .type, button .label {
+button .type, button .label, button .lock {
     display: inline-block;
+    background-color: magenta;
+}
+
+button .type, button .lock {
+    padding: 2vw;
 }
 
 button .type {
     float: left;
 }
 
-button#randomize {
+button .lock {
+    float: right;
+}
+
+button#randomize, button#unlock {
+    /* display: inline-block; */
     width: 12vh;
     height: 12vh;
     border-radius: 8vh;
-    margin: 4vw auto 0 auto;
+    /* margin: 4vw auto 0 auto; */
+}
+
+#buttonbar {
+    display: flex;
+    justify-content: space-evenly;
+    margin: 4vw 0 0 0;
 }
