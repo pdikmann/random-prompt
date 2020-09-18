@@ -8,6 +8,7 @@ var lengths = (() => {
   }
   return len
 })() // unnecessary, not an optimization
+var buttons = []
 
 randomize.addEventListener("click", Random)
 
@@ -21,23 +22,25 @@ function Random() {
 function WriteButton(i) {
   let f = fields[i]
   let b = document.createElement("button")
-  b.addEventListener("click",() => RandomizeButton(b, f))
+  b.addEventListener("click", () => RandomizeButton(b, f))
   RandomizeButton(b, f)
   content.appendChild(b)
+  buttons.push(b)
 }
 
 function RandomizeButton(b, f) {
   b.textContent = f.data[Math.floor(Math.random() * f.data.length)]
 }
 
-  
-
 function WriteLine(str) {
   content.innerHTML = content.innerHTML + str + "<br>"
 }
 
 function Clear() {
-  content.innerHTML = ""
+  for (b of buttons) {
+    content.removeChild(b)
+  }
+  buttons = []
 }
 
 Random()
