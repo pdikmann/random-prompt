@@ -35,7 +35,15 @@ button {
     border-radius: 2vmin;
 }
 
-#randomize {
+button .type, button .label {
+    display: inline-block;
+}
+
+button .type {
+    float: left;
+}
+
+button#randomize {
     width: 12vh;
     height: 12vh;
     border-radius: 8vh;
