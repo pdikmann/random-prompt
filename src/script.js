@@ -1,6 +1,9 @@
 var content = document.getElementById("content")
-var randomize = document.getElementById("randomize")
+var randomizeAll = document.getElementById("randomizeAll")
+var randomizeContent = document.getElementById("randomizeContent")
 var unlock = document.getElementById("unlock")
+var defaultAll = document.getElementById("defaultAll")
+
 var unlockLocksNext = false
 var emojis = ["👷", // occupation
               "🏢", // building
@@ -11,7 +14,7 @@ var emojis = ["👷", // occupation
 var lockemoji = [ "🔑", // open
                   "🔒" // locked
                 ]
-var set = [1, 0, 4, 4, 4, 2, 3]
+var defaultSet = [1, 1, 0, 0, 4, 2, 3]
 var lengths = (() => {
   let len = []
   for (i in fields) {
@@ -21,18 +24,21 @@ var lengths = (() => {
 })() // unnecessary, not an optimization
 var buttons = []
 
-randomize.addEventListener("click", RandomizeAll)
+defaultAll.addEventListener("click", DefaultAll)
+randomizeAll.addEventListener("click", RandomizeAll)
+randomizeContent.addEventListener("click", RandomizeContents)
 unlock.addEventListener("click", UnlockAll)
 
 function InitialSet() {
   ClearButtons()
-  for (i of set) {
+  for (i of defaultSet) {
     WriteButton(i)
   }
 }
 
 function WriteButton(i) {
   let b = document.createElement("button")
+  b.className = "prompt"
   b.pd = {}
   b.pd.fieldIndex = i;
   b.pd.locked = 0;
@@ -45,15 +51,42 @@ function WriteLine(str) {
   content.innerHTML = content.innerHTML + str + "<br>"
 }
 
-function RandomizeAll() {
-  for (b of buttons) {
-    if (!b.pd.locked)
-      RandomizeButton(b)
+function DefaultAll() {
+  for (let i = 0; i < defaultSet.length; i++) {
+    SetButton(buttons[i], defaultSet[i])
   }
 }
 
+function RandomizeAll() {
+  let is = []
+  for (let i = 0; i < defaultSet.length; i++) {
+    is.push(RandomField())
+  }
+  is.sort()
+  for (let i = 0; i < defaultSet.length; i++) {
+    if (!buttons[i].pd.locked)
+      SetButton(buttons[i], is[i])
+  }
+}
+
+function RandomizeContents() {
+  for (b of buttons) {
+    if (!b.pd.locked)
+      RandomizeButtonContent(b)
+  }
+}
+
+function SetButton(b, i) {
+  b.pd.fieldIndex = i
+  RandomizeButtonContent(b)
+}
+
+function RandomField() {
+  return Math.floor(Math.random() * fields.length)
+}
+
 function RandomizeButton(b) {
-  let i = Math.floor(Math.random() * fields.length)
+  let i = RandomField()
   b.pd.fieldIndex = i
   RandomizeButtonContent(b)
 }
@@ -81,13 +114,13 @@ function ToggleButtonType (b) {
 function ToggleButtonLock (b) {
   b.pd.locked = 1 - b.pd.locked
   ResetUnlockAll()
-  UpdateLockEmoji(b)
+  UpdateLockVisual(b)
 }
 
 function UnlockAll () {
   for (b of buttons) {
     b.pd.locked = unlockLocksNext ? 1 : 0
-    UpdateLockEmoji(b)
+    UpdateLockVisual(b)
   }
   unlockLocksNext = !unlockLocksNext
   UpdateLockAllEmoji()
@@ -102,7 +135,7 @@ function UpdateLockAllEmoji() {
   unlock.textContent = lockemoji[ unlockLocksNext ? 1 : 0]
 }
 
-function UpdateLockEmoji(b) {
+function UpdateLockVisual(b) {
   b.pd.lockElement.textContent = lockemoji[b.pd.locked]
 }
 
