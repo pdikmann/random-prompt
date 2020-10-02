@@ -5,16 +5,10 @@ var unlock = document.getElementById("unlock")
 var defaultAll = document.getElementById("defaultAll")
 
 var unlockLocksNext = false
-var emojis = ["👷", // occupation
-              "🏢", // building
-              "🔍", // adjective
-              "✊", // verb
-              "📃" // thing
-             ]
 var lockemoji = [ "🔑", // open
                   "🔒" // locked
                 ]
-var defaultSet = [1, 1, 0, 0, 4, 2, 3]
+var defaultSet = [1, 1, 0, 5, 4, 2, 3]
 var lengths = (() => {
   let len = []
   for (i in fields) {
@@ -94,7 +88,7 @@ function RandomizeButton(b) {
 function RandomizeButtonContent(b) {
   let f = fields[b.pd.fieldIndex]
   ClearElement(b)
-  let type = MakeElement("div", "type", emojis[b.pd.fieldIndex])
+  let type = MakeElement("div", "type", f.emoji)
   type.addEventListener("click", () => ToggleButtonType(b))
   b.appendChild(type)
   let content = MakeElement("div", "label", f.data[Math.floor(Math.random() * f.data.length)])
