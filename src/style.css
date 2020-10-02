@@ -30,7 +30,7 @@ button.prompt {
     align-items: center;
     margin: 0 0 1vw 4vw;
     width: 92vw;
-    height: 8vh;
+    min-height: 8vh;
 }
 
 button .type, button .label, button .lock {
