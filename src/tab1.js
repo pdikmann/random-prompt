@@ -48,7 +48,7 @@ function getSnip(s, n) {
   return mergeUmlauts(s.substr(0, n).toLowerCase())
 }
 
-function setBoundaries(a, n) {
+function findBoundaries(a, n) {
   // determine boundaries of sets in array A starting with the same N letters.
   let prevSnip = getSnip(a[0], n)
   let sets = []
@@ -65,10 +65,11 @@ function setBoundaries(a, n) {
 
 var boundaries = []
 for (let i = 0; i < fields.length; i++) {
-  boundaries.push(setBoundaries(fields[i].data, 1))
+  boundaries.push(findBoundaries(fields[i].data, 1))
 }
 
-function getBoundaries(b, k) {
+function lookupBoundaries(b, k) {
+  // find the boundaries of key K in the boundaries B
   let upper, lower
   for (let i = 0; i < b.length; i++) {
     if (b[i][0] == k) {
@@ -84,7 +85,17 @@ function randomBetween(lower, upper) {
   return Math.floor(Math.random() * (upper - lower)) + lower 
 } 
 
-console.log(randomLetter())
+function randomBetweenBounds(b) {return randomBetween(b[0], b[1])}
+
+function randomPair(){
+  let letter = randomLetter(),
+        adjBounds = lookupBoundaries(boundaries[2], letter),
+        dngBounds = lookupBoundaries(boundaries[4], letter),
+        adj = fields[2].data[randomBetweenBounds(adjBounds)],
+        dng = fields[4].data[randomBetweenBounds(dngBounds)]
+    return adj + " " + dng }
+
+console.log(randomPair())
 console.log(setBoundaries(fields[2].data, 1))
 
 ShowTab(0)
