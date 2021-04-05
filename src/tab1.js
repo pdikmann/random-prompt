@@ -80,6 +80,10 @@ function getBoundaries(b, k) {
   return [lower, upper]
 }
 
+function randomBetween(lower, upper) { 
+  return Math.floor(Math.random() * (upper - lower)) + lower 
+} 
+
 console.log(randomLetter())
 console.log(setBoundaries(fields[2].data, 1))
 
