@@ -63,6 +63,11 @@ function setBoundaries(a, n) {
   return sets
 }
 
+var boundaries = []
+for (let i = 0; i < fields.length; i++) {
+  boundaries.push(setBoundaries(fields[i].data, 1))
+}
+
 console.log(randomLetter())
 console.log(setBoundaries(fields[2].data, 1))
 
