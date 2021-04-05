@@ -59,7 +59,7 @@ function setBoundaries(a, n) {
       prevSnip = snip
     }
   }
-  sets.push([getSnip(a[a.length - 1], n), a.length - 1])
+  sets.push([getSnip(a[a.length - 1], n), a.length])
   return sets
 }
 
