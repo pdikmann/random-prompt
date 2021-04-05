@@ -60,3 +60,9 @@ button.bar {
     height: 12vh;
     border-radius: 8vh;
 }
+
+#tabbar {
+  display: flex;
+  justify-content: space-around;
+}
+
