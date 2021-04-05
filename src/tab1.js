@@ -68,6 +68,18 @@ for (let i = 0; i < fields.length; i++) {
   boundaries.push(setBoundaries(fields[i].data, 1))
 }
 
+function getBoundaries(b, k) {
+  let upper, lower
+  for (let i = 0; i < b.length; i++) {
+    if (b[i][0] == k) {
+      upper = b[i][1]
+      lower = (i == 0 ? 0 : b[i - 1][1])
+      break
+    }
+  }
+  return [lower, upper]
+}
+
 console.log(randomLetter())
 console.log(setBoundaries(fields[2].data, 1))
 
