@@ -66,6 +66,12 @@ button.bar {
   justify-content: space-around;
 }
 
+.tabbutton {
+  border-radius: 2vmin 2vmin 0 0;
+  border: 2px solid blue;
+  border-bottom: none;
+}
+
 .tab.hidden {
   display: none;
 }
