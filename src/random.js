@@ -81,4 +81,5 @@ function UpdateLockVisual(b) {
   b.pd.lockElement.textContent = lockemoji[b.pd.locked]
 }
 
+OnTabChange(0, InitialSet)
 InitialSet()
