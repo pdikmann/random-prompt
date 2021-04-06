@@ -130,7 +130,13 @@ function MatchButtonContent(b) {
     return
   }
   b.pd.noMatch = false
-  b.pd.dataIndex = randomBetweenBounds(bounds)
+  let newIndex = bounds[0]
+  if (bounds[1] - bounds[0] > 1){
+    do {
+      newIndex = randomBetweenBounds(bounds)
+    } while (newIndex == b.pd.dataIndex)
+  }
+  b.pd.dataIndex = newIndex
   UpdateButtonContent(b)
 }
 
