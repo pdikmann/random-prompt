@@ -59,7 +59,7 @@ function lookupBoundaries(b, k) {
       break
     }
   }
-  if (lower == 0 && upper == 0) console.warn("did not find boundaries for key:", k)
+  if (lower == 0 && upper == 0) throw ("did not find boundaries for key: " + k)
   return [lower, upper]
 }
 
@@ -99,16 +99,46 @@ function matchedSet(a, k){
 console.log(matchedPair())
 
 let matchLetter = "m"
+let input = document.getElementById("letter")
+let lottery = document.getElementsByClassName("letter-lottery")[0]
+
+input.addEventListener("input", UpdateMatchLetter)
+lottery.addEventListener("click", LetterLottery)
+
+function UpdateMatchLetter(event){
+  matchLetter = event.target.value.substr(0, boundaries.length)
+  if (matchLetter.length > 0) RandomizeContents()
+}
+
+function LetterLottery(){
+  let rand = (i) => Math.floor(Math.random() * i),
+      d = rand(boundaries.length), // random depth
+      f = rand(boundaries[d].length), // random field
+      b = rand(boundaries[d][f].length) // random boundary
+  matchLetter = boundaries[d][f][b][0] // assign key as letter
+  input.value = matchLetter
+  RandomizeContents()
+}
 
 function MatchButtonContent(b) {
-  b.pd.dataIndex = randomBetweenBounds(lookupBoundaries(boundaries[matchLetter.length - 1][b.pd.fieldIndex], matchLetter))
+  let bounds
+  try {
+    bounds = lookupBoundaries(boundaries[matchLetter.length - 1][b.pd.fieldIndex], matchLetter)
+  } catch (err) {
+    b.pd.noMatch = true
+    UpdateButtonContent(b)
+    return
+  }
+  b.pd.noMatch = false
+  b.pd.dataIndex = randomBetweenBounds(bounds)
   UpdateButtonContent(b)
 }
 
 function MatchedInitialSet(){
   ResetUnlockAll()
   ClearButtons()
-  defaultSet = [2, 4, 2, 4, 3, 1, 0]
+  defaultSet = [2, 0, 2, 4, 3, 1, 3]
+  matchLetter = input.value.substr(0, boundaries.length)
   for (i of defaultSet) {
     WriteButton(i, 0, MatchButtonContent)
   }

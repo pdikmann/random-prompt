@@ -29,9 +29,31 @@ function WriteButton(fi, di, redoFn) {
   b.pd.dataIndex = di || 0
   b.pd.locked = 0
   b.pd.redoFn = redoFn || DoNothing
+  b.pd.noMatch = false
   //RandomizeButtonContent(b)
   content.appendChild(b)
   buttons.push(b)
+}
+
+function AddClass(e, c){
+  let classes = e.className.split(" ")
+  if (classes.includes(c)) return;
+  classes.push(c)
+  e.className = classes.join(" ")
+}
+
+function RemoveClass(e, c){
+  let classes = e.className.split(" ")
+  if (!classes.includes(c)) return;
+  classes.splice(classes.lastIndexOf(c), 1)
+  e.className = classes.join(" ")
+}
+
+function ReDo(b) {
+  b.pd.redoFn(b)
+  if (b.pd.noMatch) return
+  AddClass(b, "ping")
+  setTimeout(() => RemoveClass(b, "ping"), 300)
 }
 
 function DoNothing(b) {
@@ -41,8 +63,9 @@ function UpdateButtonContent(b) {
   let f = fields[b.pd.fieldIndex],
       d = f.data[b.pd.dataIndex]
   ClearElement(b)
+  if (b.pd.noMatch) { AddClass(b, "no-match") } else { RemoveClass(b, "no-match") }
   let content = MakeElement("div", "label", d)
-  content.addEventListener("click", () => b.pd.redoFn(b))
+  content.addEventListener("click", () => ReDo(b))
   b.appendChild(content)
   let wrap = MakeElement("div", "wrap")
   b.appendChild(wrap)

@@ -39,6 +39,21 @@ button.prompt {
   min-height: 8vh;
 }
 
+button.prompt.no-match {
+  opacity: 20%;
+}
+
+@keyframes pingAnim {
+  /* 0% {background-color: white;} */
+  0% {background-color: yellow;}
+  100% {background-color:white;}
+}
+
+button.prompt.ping {
+  animation-name: pingAnim;
+  animation-duration: 0.2s;
+}
+
 button .type, button .label, button .lock {
   display: inline-block;
   text-align: left;
