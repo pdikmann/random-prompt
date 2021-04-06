@@ -21,27 +21,12 @@ function randomLetter() {
   return int2Letter(Math.floor(Math.random() * 26))
 }
 
-function mergeUmlauts(c){
-  switch(c){
-  case "ä":
-    return "a"
-    break
-  case "ë":
-    return "e"
-    break
-  case "ï":
-    return "i"
-    break
-  case "ö":
-    return "o"
-    break
-  case "ü":
-    return "u"
-    break
-  default:
-    return c
-    break
-  }
+function mergeUmlauts(s){
+  return s.replace("ä", "a")
+    .replace("ë", "e")
+    .replace("ï", "i")
+    .replace("ö", "o")
+    .replace("ü", "u")
 }
 
 function getSnip(s, n) {
