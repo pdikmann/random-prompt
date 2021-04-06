@@ -1,75 +1,89 @@
 * {
-    margin: 0px;
-    padding: 0px;
+  margin: 0px;
+  padding: 0px;
+  font-family: sans-serif;
 }
 
 html, body {
-    /* overflow: hidden; */
+  /* overflow: hidden; */
 }
 
 body {
-    position: relative;
-    font-size: 5vmin;
+  position: relative;
+  font-size: 5vmin;
 }
 
 #wrapper {
-    margin: 4vw 0 0 0;
+  margin: 4vw 0 0 0;
 }
 
 button {
-    font-size: inherit;
-    background-color: white;
-    border: 2px solid blue;
-    border-radius: 2vmin;
-    outline: none;
+  font-size: inherit;
+  background-color: white;
+  border: 2px solid blue;
+  border-radius: 2vmin;
+  outline: none;
 }
 
 button.prompt {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin: 0 0 1vw 4vw;
-    width: 92vw;
-    min-height: 8vh;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 0 0 1vw 4vw;
+  padding-left: 4vw;
+  width: 92vw;
+  min-height: 8vh;
 }
 
 button .type, button .label, button .lock {
-    display: inline-block;
+  display: inline-block;
+  text-align: left;
 }
 
 button .type, button .lock {
-    padding: 2vw;
+  padding: 2vw;
 }
 
 button .lock.open {
-    opacity: 20%;
+  opacity: 20%;
+}
+
+button .wrap {
+  display: flex;
+  flex-wrap: nowrap;
 }
 
 button .lock.closed {
-    opacity: 100%;
+  opacity: 100%;
 }
 
 #buttonbar {
-    display: flex;
-    justify-content: space-evenly;
-    margin: 4vw 0 0 0;
+  display: flex;
+  justify-content: space-between;
+  margin: 4vw 4vw 0 4vw;
 }
 
 button.bar {
-    width: 12vh;
-    height: 12vh;
-    border-radius: 8vh;
+  width: 12vh;
+  height: 12vh;
+  border-radius: 2vmin;
 }
 
 #tabbar {
   display: flex;
+  margin: 0 4vw 4vw 4vw;
   justify-content: space-around;
 }
 
 .tabbutton {
-  border-radius: 2vmin 2vmin 0 0;
-  border: 2px solid blue;
-  border-bottom: none;
+  border-bottom: 2px solid blue;
+  flex-grow: 1;
+  margin-left: 4vw;
+  padding-left: 4vw;
+}
+
+.tabbutton:first-child {
+  margin-left: 0;
 }
 
 .tab.hidden {
