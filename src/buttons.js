@@ -21,16 +21,20 @@ function ClearElement(e) {
   }
 }
 
-function WriteButton(fi, di) {
+function WriteButton(fi, di, redoFn) {
   let b = document.createElement("button")
   b.className = "prompt"
   b.pd = {}
-  b.pd.fieldIndex = fi || 0;
-  b.pd.dataIndex = di || 0;
-  b.pd.locked = 0;
+  b.pd.fieldIndex = fi || 0
+  b.pd.dataIndex = di || 0
+  b.pd.locked = 0
+  b.pd.redoFn = redoFn || DoNothing
   //RandomizeButtonContent(b)
   content.appendChild(b)
   buttons.push(b)
+}
+
+function DoNothing(b) {
 }
 
 function UpdateButtonContent(b) {
@@ -38,7 +42,7 @@ function UpdateButtonContent(b) {
       d = f.data[b.pd.dataIndex]
   ClearElement(b)
   let content = MakeElement("div", "label", d)
-  content.addEventListener("click", () => RandomizeButtonContent(b))
+  content.addEventListener("click", () => b.pd.redoFn(b))
   b.appendChild(content)
   let wrap = MakeElement("div", "wrap")
   b.appendChild(wrap)
@@ -51,14 +55,9 @@ function UpdateButtonContent(b) {
   wrap.appendChild(lock)
 }
 
-function RandomizeButtonContent(b) {
-  b.pd.dataIndex = Math.floor(Math.random() * fields[b.pd.fieldIndex].data.length)
-  UpdateButtonContent(b)
-}
-
 function ToggleButtonType (b) {
   b.pd.fieldIndex = (b.pd.fieldIndex + 1) % fields.length
-  RandomizeButtonContent(b)
+  b.pd.redoFn(b)
 }
 
 function ToggleButtonLock (b) {

@@ -1,5 +1,3 @@
-var content1 = document.getElementById("content1")
-
 function int2Letter(i) {
   return (Math.max(0, Math.min(25, i)) + 10).toString(36)
 }
@@ -99,5 +97,22 @@ function matchedSet(a, k){
 }
 
 console.log(matchedPair())
-console.log(findBoundaries(fields[2].data, 1))
 
+let defaultMatchedSet = [2, 4, 2, 4, 3, 1, 0]
+let matchLetter = "m"
+
+function MatchButtonContent(b) {
+  b.pd.dataIndex = randomBetweenBounds(lookupBoundaries(boundaries[matchLetter.length - 1][b.pd.fieldIndex], matchLetter))
+  UpdateButtonContent(b)
+}
+
+function MatchedInitialSet(){
+  ResetUnlockAll()
+  ClearButtons()
+  for (i of defaultMatchedSet) {
+    WriteButton(i, 0, MatchButtonContent)
+  }
+  RandomizeContents()
+}
+
+OnTabChange(1, MatchedInitialSet)

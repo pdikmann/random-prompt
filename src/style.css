@@ -40,6 +40,12 @@ button .type, button .label, button .lock {
   text-align: left;
 }
 
+button .label {
+  overflow: scroll;
+  padding: 3vw 0;
+  min-width: 60vw;
+}
+
 button .type, button .lock {
   padding: 2vw;
 }
@@ -57,15 +63,15 @@ button .lock.closed {
   opacity: 100%;
 }
 
-#buttonbar {
+.buttonbar {
   display: flex;
   justify-content: space-between;
   margin: 4vw 4vw 0 4vw;
 }
 
 button.bar {
-  width: 12vh;
-  height: 12vh;
+  width: 12vw;
+  height: 12vw;
   border-radius: 2vmin;
 }
 
