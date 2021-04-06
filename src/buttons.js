@@ -63,7 +63,12 @@ function UpdateButtonContent(b) {
   let f = fields[b.pd.fieldIndex],
       d = f.data[b.pd.dataIndex]
   ClearElement(b)
-  if (b.pd.noMatch) { AddClass(b, "no-match") } else { RemoveClass(b, "no-match") }
+  if (b.pd.noMatch) {
+    d = ""
+    AddClass(b, "no-match")
+  } else {
+    RemoveClass(b, "no-match")
+  }
   let content = MakeElement("div", "label", d)
   content.addEventListener("click", () => ReDo(b))
   b.appendChild(content)
