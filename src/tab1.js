@@ -96,6 +96,6 @@ function randomPair(){
     return adj + " " + dng }
 
 console.log(randomPair())
-console.log(setBoundaries(fields[2].data, 1))
+console.log(findBoundaries(fields[2].data, 1))
 
 ShowTab(0)
