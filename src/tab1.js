@@ -49,8 +49,8 @@ function findBoundaries(a, n) {
 }
 
 function fieldBoundaries (n) {
-  let out = []
   // determine boundaries of all fields
+  let out = []
   for (let i = 0; i < fields.length; i++) {
     out.push(findBoundaries(fields[i].data, n))
   }
@@ -74,6 +74,7 @@ function lookupBoundaries(b, k) {
       break
     }
   }
+  if (lower == 0 && upper == 0) console.warn("did not find boundaries for key:", k)
   return [lower, upper]
 }
 
@@ -83,7 +84,7 @@ function randomBetween(lower, upper) {
 
 function randomBetweenBounds(b) {return randomBetween(b[0], b[1])}
 
-function randomPair(){
+function matchedPair(){
   // pairs up random data from fields 2 and 4, matching their first letter.
   let depth = 0,
       letter = randomLetter(),
@@ -93,7 +94,24 @@ function randomPair(){
       dng = fields[4].data[randomBetweenBounds(dngBounds)]
   return adj + " " + dng }
 
-console.log(randomPair())
+function findMatch(fi, letters){
+  if (letters.length > boundaries.length) console.warn("letters exceed available boundary depth:", letters)
+  let k = letters.substr(0, boundaries.length)
+  return fields[fi].data[randomBetweenBounds(lookupBoundaries(boundaries[k.length - 1][fi], k))]
+}
+
+function matchedSet(a, k){
+  // get random data from fields with indices of array A, matching their first letter(s) K.
+  let letters = k || randomLetter(),
+      depth = letters.length - 1,
+      out = []
+  for (let i = 0; i < a.length; i++) {
+    out.push(findMatch(a[i], letters))
+  }
+  return out
+}
+
+console.log(matchedPair())
 console.log(findBoundaries(fields[2].data, 1))
 
 ShowTab(0)
