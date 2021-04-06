@@ -63,10 +63,19 @@ function findBoundaries(a, n) {
   return sets
 }
 
-var boundaries = []
-for (let i = 0; i < fields.length; i++) {
-  boundaries.push(findBoundaries(fields[i].data, 1))
+function fieldBoundaries (n) {
+  let out = []
+  // determine boundaries of all fields
+  for (let i = 0; i < fields.length; i++) {
+    out.push(findBoundaries(fields[i].data, n))
+  }
+  return out
 }
+
+var boundaries = []
+boundaries[0] = fieldBoundaries(1)
+boundaries[1] = fieldBoundaries(2)
+boundaries[2] = fieldBoundaries(3)
 
 function lookupBoundaries(b, k) {
   // find the boundaries of key K in the boundaries B
@@ -88,12 +97,14 @@ function randomBetween(lower, upper) {
 function randomBetweenBounds(b) {return randomBetween(b[0], b[1])}
 
 function randomPair(){
-  let letter = randomLetter(),
-        adjBounds = lookupBoundaries(boundaries[2], letter),
-        dngBounds = lookupBoundaries(boundaries[4], letter),
-        adj = fields[2].data[randomBetweenBounds(adjBounds)],
-        dng = fields[4].data[randomBetweenBounds(dngBounds)]
-    return adj + " " + dng }
+  // pairs up random data from fields 2 and 4, matching their first letter.
+  let depth = 0,
+      letter = randomLetter(),
+      adjBounds = lookupBoundaries(boundaries[depth][2], letter),
+      dngBounds = lookupBoundaries(boundaries[depth][4], letter),
+      adj = fields[2].data[randomBetweenBounds(adjBounds)],
+      dng = fields[4].data[randomBetweenBounds(dngBounds)]
+  return adj + " " + dng }
 
 console.log(randomPair())
 console.log(findBoundaries(fields[2].data, 1))
