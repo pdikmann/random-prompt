@@ -28,7 +28,7 @@ function WriteButton(fi, di) {
   b.pd.fieldIndex = fi || 0;
   b.pd.dataIndex = di || 0;
   b.pd.locked = 0;
-  RandomizeButtonContent(b)
+  //RandomizeButtonContent(b)
   content.appendChild(b)
   buttons.push(b)
 }
@@ -67,11 +67,6 @@ function ToggleButtonLock (b) {
   UpdateLockVisual(b)
 }
 
-function UnlockAll () {
-  for (b of buttons) {
-    b.pd.locked = unlockLocksNext ? 1 : 0
-    UpdateLockVisual(b)
-  }
-  unlockLocksNext = !unlockLocksNext
-  UpdateLockAllEmoji()
+function UpdateLockVisual(b) {
+  b.pd.lockElement.textContent = lockemoji[b.pd.locked]
 }

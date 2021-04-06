@@ -1,12 +1,8 @@
+var random = {}
+
 var randomizeAll = document.getElementById("randomizeAll")
 var randomizeContent = document.getElementById("randomizeContent")
-var unlock = document.getElementById("unlock")
 var defaultAll = document.getElementById("defaultAll")
-
-var unlockLocksNext = false
-var lockemoji = [ "🔑", // open
-                  "🔒" // locked
-                ]
 var defaultSet = [1, 1, 0, 5, 4, 2, 3]
 var lengths = (() => {
   let len = []
@@ -19,13 +15,14 @@ var lengths = (() => {
 defaultAll.addEventListener("click", DefaultAll)
 randomizeAll.addEventListener("click", RandomizeAll)
 randomizeContent.addEventListener("click", RandomizeContents)
-unlock.addEventListener("click", UnlockAll)
 
 function InitialSet() {
+  ResetUnlockAll()
   ClearButtons()
   for (i of defaultSet) {
     WriteButton(i)
   }
+  RandomizeContents()
 }
 
 function DefaultAll() {
@@ -36,13 +33,13 @@ function DefaultAll() {
 
 function RandomizeAll() {
   let is = []
-  for (let i = 0; i < defaultSet.length; i++) {
+  for (let i = 0; i < buttons.length; i++) {
     is.push(RandomField())
   }
   is.sort()
-  for (let i = 0; i < defaultSet.length; i++) {
-    if (!buttons[i].pd.locked)
-      SetButton(buttons[i], is[i])
+  for (b of buttons) {
+    if (!b[i].pd.locked)
+      SetButton(b[i], is[i])
   }
 }
 
@@ -66,19 +63,6 @@ function RandomizeButton(b) {
   let i = RandomField()
   b.pd.fieldIndex = i
   RandomizeButtonContent(b)
-}
-
-function ResetUnlockAll() {
-  unlockLocksNext = false
-  UpdateLockAllEmoji();
-}
-
-function UpdateLockAllEmoji() {
-  unlock.textContent = lockemoji[ unlockLocksNext ? 1 : 0]
-}
-
-function UpdateLockVisual(b) {
-  b.pd.lockElement.textContent = lockemoji[b.pd.locked]
 }
 
 OnTabChange(0, InitialSet)
