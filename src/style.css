@@ -4,6 +4,10 @@
   font-family: sans-serif;
 }
 
+*:focus {
+  outline: none;
+}
+
 html, body {
   /* overflow: hidden; */
 }
@@ -70,10 +74,28 @@ button .lock.closed {
   margin: 4vw 4vw 0 4vw;
 }
 
+.buttonbar * {
+  margin-left: 4vw;
+}
+
+.buttonbar *:first-child {
+  margin-left: 0;
+}
+
 button.bar {
   width: 12vw;
   height: 12vw;
   border-radius: 2vmin;
+}
+
+.buttonbar input {
+  flex-grow: 1;
+  width: 12vw;
+  font-size: 1em;
+  outline: none;
+  border: 2px solid blue;
+  border-radius: 2vmin;
+  padding-left: 4vw;
 }
 
 #tabbar {
