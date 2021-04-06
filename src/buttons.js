@@ -51,9 +51,9 @@ function RemoveClass(e, c){
 
 function ReDo(b) {
   b.pd.redoFn(b)
-  if (b.pd.noMatch) return
-  AddClass(b, "ping")
-  setTimeout(() => RemoveClass(b, "ping"), 300)
+  // if (b.pd.noMatch) return
+  // AddClass(b, "ping")
+  // setTimeout(() => RemoveClass(b, "ping"), 300)
 }
 
 function DoNothing(b) {
