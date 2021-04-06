@@ -106,7 +106,7 @@ input.addEventListener("input", UpdateMatchLetter)
 lottery.addEventListener("click", LetterLottery)
 
 function UpdateMatchLetter(event){
-  matchLetter = event.target.value.substr(0, boundaries.length)
+  matchLetter = mergeUmlauts(event.target.value.substr(0, boundaries.length))
   if (matchLetter.length > 0) RandomizeContents()
 }
 
