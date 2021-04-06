@@ -9,11 +9,11 @@ function randomLetter() {
 }
 
 function mergeUmlauts(s){
-  return s.replace("Ã¤", "a")
-    .replace("Ã«", "e")
-    .replace("Ã¯", "i")
-    .replace("Ã¶", "o")
-    .replace("Ã¼", "u")
+  return s.replace("ä", "a")
+    .replace("ë", "e")
+    .replace("ï", "i")
+    .replace("ö", "o")
+    .replace("ü", "u")
 }
 
 function getSnip(s, n) {
