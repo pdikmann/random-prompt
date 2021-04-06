@@ -7,11 +7,11 @@ function randomLetter() {
 }
 
 function mergeUmlauts(s){
-  return s.replace("ä", "a")
-    .replace("ë", "e")
-    .replace("ï", "i")
-    .replace("ö", "o")
-    .replace("ü", "u")
+  return s.replace(/Ã¤/g, "a")
+    .replace(/Ã«/g, "e")
+    .replace(/Ã¯/g, "i")
+    .replace(/Ã¶/g, "o")
+    .replace(/Ã¼/g, "u")
 }
 
 function getSnip(s, n) {
