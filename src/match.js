@@ -1,17 +1,4 @@
-var tabs = document.getElementsByClassName("tab")
-var tabbuttons = document.getElementById("tabbar").children
 var content1 = document.getElementById("content1")
-
-for (let i = 0; i < tabbuttons.length; i++) {
-  tabbuttons[i].addEventListener("click", () => ShowTab(i))
-}
-
-function ShowTab(n) {
-  for (let i = 0; i < tabs.length; i++) {
-    tabs[i].className = "tab hidden"
-  }
-  tabs[n].className = "tab"
-}
 
 function int2Letter(i) {
   return (Math.max(0, Math.min(25, i)) + 10).toString(36)
@@ -114,4 +101,3 @@ function matchedSet(a, k){
 console.log(matchedPair())
 console.log(findBoundaries(fields[2].data, 1))
 
-ShowTab(0)
