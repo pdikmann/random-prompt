@@ -79,7 +79,9 @@ boundaries[2] = fieldBoundaries(3)
 
 function lookupBoundaries(b, k) {
   // find the boundaries of key K in the boundaries B
-  let upper, lower
+  // returns [0,0] if no match was found
+  let upper = 0,
+      lower = 0
   for (let i = 0; i < b.length; i++) {
     if (b[i][0] == k) {
       upper = b[i][1]
