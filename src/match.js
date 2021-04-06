@@ -98,7 +98,6 @@ function matchedSet(a, k){
 
 console.log(matchedPair())
 
-let defaultMatchedSet = [2, 4, 2, 4, 3, 1, 0]
 let matchLetter = "m"
 
 function MatchButtonContent(b) {
@@ -109,7 +108,8 @@ function MatchButtonContent(b) {
 function MatchedInitialSet(){
   ResetUnlockAll()
   ClearButtons()
-  for (i of defaultMatchedSet) {
+  defaultSet = [2, 4, 2, 4, 3, 1, 0]
+  for (i of defaultSet) {
     WriteButton(i, 0, MatchButtonContent)
   }
   RandomizeContents()

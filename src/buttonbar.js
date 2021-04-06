@@ -1,14 +1,20 @@
-var randomizeAll = document.getElementById("random-randomizeAll")
-var randomizeContent = document.getElementById("random-randomizeContent")
-var defaultAll = document.getElementById("random-defaultAll")
+var randomizeAll = document.getElementsByClassName("randomize-all")
+var randomizeContent = document.getElementsByClassName("randomize-content")
+var defaultAll = document.getElementsByClassName("default-all")
+var unlock = document.getElementsByClassName("unlock")
+var unlockLocksNext = false
+var lockemoji = [ "🔑", // open
+                  "🔒" // locked
+                ]
 
-defaultAll.addEventListener("click", DefaultAll)
-randomizeAll.addEventListener("click", RandomizeAll)
-randomizeContent.addEventListener("click", RandomizeContents)
+for (ra of randomizeAll) ra.addEventListener("click", RandomizeAll)
+for (rc of randomizeContent) rc.addEventListener("click", RandomizeContents)
+for (da of defaultAll) da.addEventListener("click", DefaultAll)
+for (u of unlock) u.addEventListener("click", UnlockAll)
 
 function DefaultAll() {
   for (let i = 0; i < defaultSet.length; i++) {
-    SetButton(buttons[i], defaultSet[i])
+    SetButtonField(buttons[i], defaultSet[i])
   }
 }
 
@@ -38,4 +44,24 @@ function RandomizeContents() {
 function SetButtonField(b, i) {
   b.pd.fieldIndex = i
   b.pd.redoFn(b)
+}
+
+
+function ResetUnlockAll() {
+  unlockLocksNext = false
+  UpdateLockAllEmoji();
+}
+
+function UpdateLockAllEmoji() {
+  let emoji = lockemoji[ unlockLocksNext ? 1 : 0]
+  for (u of unlock) u.textContent = emoji
+}
+
+function UnlockAll () {
+  for (b of buttons) {
+    b.pd.locked = unlockLocksNext ? 1 : 0
+    UpdateLockVisual(b)
+  }
+  unlockLocksNext = !unlockLocksNext
+  UpdateLockAllEmoji()
 }
