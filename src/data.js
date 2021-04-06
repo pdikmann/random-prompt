@@ -2,7 +2,7 @@ var fields = []
 
 fields[0] = {
   label: "Jobs",
-  emoji: "👷",
+  emoji: "🛠️",
   data: [
 "3-D-Designer",
 "Aalbrutzüchter",
@@ -37816,7 +37816,7 @@ fields[3] = {
 
 fields[4] = {
   label: "Ding",
-  emoji: "📃",
+  emoji: "📚",
   data: [
 "AAA",
 "Aachen",
@@ -101310,7 +101310,7 @@ fields[4] = {
 
 fields[5] = {
   label: "BerufKategorie",
-  emoji: "🩳",
+  emoji: "⚒️",
   data: [
 "Altenpflege",
 "Angehörige der regulären Streitkräfte in sonstigen Rängen",
