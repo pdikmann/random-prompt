@@ -8,6 +8,20 @@ function MakeElement(element, className, content) {
   return e
 }
 
+function AddClass(e, c){
+  let classes = e.className.split(" ")
+  if (classes.includes(c)) return;
+  classes.push(c)
+  e.className = classes.join(" ")
+}
+
+function RemoveClass(e, c){
+  let classes = e.className.split(" ")
+  if (!classes.includes(c)) return;
+  classes.splice(classes.lastIndexOf(c), 1)
+  e.className = classes.join(" ")
+}
+
 function ClearButtons() {
   for (b of buttons) {
     content.removeChild(b)
@@ -33,20 +47,6 @@ function WriteButton(fi, di, redoFn) {
   //RandomizeButtonContent(b)
   content.appendChild(b)
   buttons.push(b)
-}
-
-function AddClass(e, c){
-  let classes = e.className.split(" ")
-  if (classes.includes(c)) return;
-  classes.push(c)
-  e.className = classes.join(" ")
-}
-
-function RemoveClass(e, c){
-  let classes = e.className.split(" ")
-  if (!classes.includes(c)) return;
-  classes.splice(classes.lastIndexOf(c), 1)
-  e.className = classes.join(" ")
 }
 
 function ReDo(b) {
