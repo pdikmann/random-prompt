@@ -41,22 +41,22 @@ function ClearElement(e) {
   }
 }
 
-function WriteButton(fi, di, redoFn) {
+function WriteButton(fi, di, contentFn) {
   let b = document.createElement("button")
   b.className = "prompt"
   b.pd = {}
   b.pd.fieldIndex = fi || 0
   b.pd.dataIndex = di || 0
   b.pd.locked = 0
-  b.pd.redoFn = redoFn || DoNothing
+  b.pd.contentFn = contentFn || DoNothing
   b.pd.noMatch = false
   //RandomizeButtonContent(b)
-  content.appendChild(b)
+  content.insertBefore(b, add)
   buttons.push(b)
 }
 
-function ReDo(b) {
-  b.pd.redoFn(b)
+function NewContent(b) {
+  b.pd.contentFn(b)
   // if (b.pd.noMatch) return
   // AddClass(b, "ping")
   // setTimeout(() => RemoveClass(b, "ping"), 300)
@@ -76,7 +76,7 @@ function UpdateButtonContent(b) {
     RemoveClass(b, "no-match")
   }
   let content = MakeElement("div", "label", d)
-  content.addEventListener("click", () => ReDo(b))
+  content.addEventListener("click", () => NewContent(b))
   b.appendChild(content)
   let wrap = MakeElement("div", "wrap")
   b.appendChild(wrap)
@@ -94,7 +94,7 @@ function UpdateButtonContent(b) {
 
 function ToggleButtonType (b) {
   b.pd.fieldIndex = (b.pd.fieldIndex + 1) % fields.length
-  b.pd.redoFn(b)
+  NewContent(b)
 }
 
 function ToggleButtonLock (b) {

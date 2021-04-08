@@ -38,13 +38,13 @@ function RandomizeAll() {
 function RandomizeContents() {
   for (b of buttons) {
     if (!b.pd.locked)
-      ReDo(b)
+      NewContent(b)
   }
 }
 
 function SetButtonField(b, i) {
   b.pd.fieldIndex = i
-  ReDo(b)
+  NewContent(b)
 }
 
 
