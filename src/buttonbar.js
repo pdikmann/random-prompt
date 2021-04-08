@@ -13,9 +13,10 @@ for (da of defaultAll) da.addEventListener("click", DefaultAll)
 for (u of unlock) u.addEventListener("click", UnlockAll)
 
 function DefaultAll() {
-  for (let i = 0; i < defaultSet.length; i++) {
-    SetButtonField(buttons[i], defaultSet[i])
-  }
+  RunTabChangeHook(currentTab)
+  // for (let i = 0; i < defaultSet.length; i++) {
+  //   SetButtonField(buttons[i], defaultSet[i])
+  // }
 }
 
 function RandomField() {
