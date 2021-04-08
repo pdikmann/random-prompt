@@ -1,7 +1,14 @@
+:root {
+  --background-color: #b5efce;
+  --text-color: #444;
+  --button-color: white;
+}
+
 * {
   margin: 0px;
   padding: 0px;
   font-family: sans-serif;
+  color: var(--text-color);
 }
 
 *:focus {
@@ -15,16 +22,17 @@ html, body {
 body {
   position: relative;
   font-size: 5vmin;
+  background-color: var(--background-color);
 }
 
 #wrapper {
-  margin: 4vw 0 0 0;
+  margin: 4vw 0;
 }
 
 button {
   font-size: inherit;
-  background-color: white;
-  border: 2px solid blue;
+  background-color: var(--button-color);
+  border: none;
   border-radius: 2vmin;
   outline: none;
 }
@@ -106,11 +114,12 @@ button.bar {
 .buttonbar input {
   flex-grow: 1;
   width: 12vw;
-  font-size: 1em;
-  outline: none;
-  border: 2px solid blue;
-  border-radius: 2vmin;
   padding-left: 4vw;
+  background-color: var(--button-color);
+  outline: none;
+  border: none;
+  border-radius: 2vmin;
+  font-size: 1em;
 }
 
 #tabbar {
@@ -126,7 +135,7 @@ button.bar {
 }
 
 .tabbutton.active {
-  border-bottom: 2px solid blue;
+  border-bottom: 4px solid var(--text-color);
 }
 
 .tab.hidden {
