@@ -42,7 +42,7 @@ button.prompt {
   justify-content: space-between;
   align-items: center;
   margin: 0 0 1vw 4vw;
-  padding-left: 4vw;
+  padding: 0 1vw 0 4vw;
   width: 92vw;
   min-height: 8vh;
 }
@@ -62,7 +62,7 @@ button.prompt.ping {
   animation-duration: 0.2s;
 }
 
-button .type, button .label, button .lock {
+button .stamp, button .label {
   display: inline-block;
   text-align: left;
 }
@@ -71,24 +71,25 @@ button .label {
   overflow: scroll;
   white-space: nowrap;
   padding: 3vw 0;
-  min-width: 60vw;
+  min-width: 50vw;
 }
 
-button .type, button .lock {
-  padding: 2vw;
+button .stamp {
+  padding: 1vmin;
+  font-size: 80%;
 }
 
 button .lock.open {
   opacity: 20%;
 }
 
+button .lock.closed {
+  opacity: 100%;
+}
+
 button .wrap {
   display: flex;
   flex-wrap: nowrap;
-}
-
-button .lock.closed {
-  opacity: 100%;
 }
 
 .buttonbar {

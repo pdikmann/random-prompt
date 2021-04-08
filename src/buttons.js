@@ -29,6 +29,12 @@ function ClearButtons() {
   buttons = []
 }
 
+function RemoveButton(b) {
+  content.removeChild(b)
+  let i = buttons.lastIndexOf(b)
+  buttons.splice(i, 1)
+}
+
 function ClearElement(e) {
   while (e.firstChild) {
     e.removeChild(e.lastChild)
@@ -74,13 +80,16 @@ function UpdateButtonContent(b) {
   b.appendChild(content)
   let wrap = MakeElement("div", "wrap")
   b.appendChild(wrap)
-  let type = MakeElement("div", "type", f.emoji)
+  let type = MakeElement("div", "type stamp", f.emoji)
   type.addEventListener("click", () => ToggleButtonType(b))
   wrap.appendChild(type)
-  let lock = MakeElement("div", "lock", lockemoji[b.pd.locked])
+  let lock = MakeElement("div", "lock stamp", lockemoji[b.pd.locked])
   lock.addEventListener("click", () => ToggleButtonLock(b))
   b.pd.lockElement = lock
   wrap.appendChild(lock)
+  let remove = MakeElement("div", "remove stamp", "❌")
+  remove.addEventListener("click", () => RemoveButton(b))
+  wrap.appendChild(remove)
 }
 
 function ToggleButtonType (b) {
