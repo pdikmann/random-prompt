@@ -120,14 +120,13 @@ button.bar {
 }
 
 .tabbutton {
-  border-bottom: 2px solid blue;
   flex-grow: 1;
-  margin-left: 4vw;
-  padding-left: 4vw;
+  text-align: center;
+  padding-bottom: 2vmin;
 }
 
-.tabbutton:first-child {
-  margin-left: 0;
+.tabbutton.active {
+  border-bottom: 2px solid blue;
 }
 
 .tab.hidden {
