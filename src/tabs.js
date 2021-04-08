@@ -12,9 +12,13 @@ function OnTabChange(n, fn) {
 
 function ShowTab(n) {
   for (let i = 0; i < tabs.length; i++) {
-    tabs[i].className = "tab hidden"
+    //tabs[i].className = "tab hidden"3
+    AddClass(tabs[i], "hidden")
+    RemoveClass(tabbuttons[i], "active")
   }
-  tabs[n].className = "tab"
+  //tabs[n].className = "tab"
+  RemoveClass(tabs[n], "hidden")
+  AddClass(tabbuttons[n], "active")
   if (typeof onTabChangeHooks[n] == "function") onTabChangeHooks[n]()
 }
 
