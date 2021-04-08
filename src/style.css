@@ -47,6 +47,13 @@ button.prompt {
   min-height: 8vh;
 }
 
+#add {
+  width: 92vw;
+  margin-left: 4vw;
+  font-size: 200%;
+  text-align: center;
+}
+
 button.prompt.no-match {
   opacity: 20%;
 }

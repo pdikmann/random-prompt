@@ -1,5 +1,8 @@
 var buttons = []
 var content = document.getElementById("content")
+var add = document.getElementById("add")
+
+//add.addEventListener("click", AddButton)
 
 function MakeElement(element, className, content) {
   let e = document.createElement(element)
